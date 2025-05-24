@@ -1,26 +1,41 @@
-# visualization.py
-# File ini digunakan untuk visualisasi sinyal yang telah diproses, seperti sinyal respirasi
-# dan rPPG, dengan menggunakan pustaka matplotlib.
-
+import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Fungsi untuk memvisualisasikan sinyal respirasi dan rPPG
-def visualize_signals(respiration_signal, rppg_signal):
-    # Visualisasi sinyal respirasi
-    plt.figure(figsize=(10, 5))
+class Visualization:
+    def __init__(self, master):
+        self.fig, self.ax = plt.subplots(figsize=(8, 5))
+        self.lines = []
+        self.ax.set_ylim(0, 255)
+        self.ax.set_xlim(0, 300)
+        self.ax.set_title("Signal Visualizations")
+        self.ax.set_xlabel("Frame")
+        self.ax.set_ylabel("Intensity")
 
-    plt.subplot(2, 1, 1)
-    plt.plot(respiration_signal)
-    plt.title("Respiratory Signal")
-    plt.xlabel("Time")
-    plt.ylabel("Amplitude")
+        # Buat dua line: respiration dan rPPG
+        self.respiration_line, = self.ax.plot([], [], label="Respiratory Signal", color='green')
+        self.rppg_line, = self.ax.plot([], [], label="rPPG Signal", color='blue')
+        self.ax.legend()
 
-    # Visualisasi sinyal rPPG
-    plt.subplot(2, 1, 2)
-    plt.plot(rppg_signal)
-    plt.title("rPPG Signal")
-    plt.xlabel("Time")
-    plt.ylabel("Amplitude")
+        self.canvas = FigureCanvasTkAgg(self.fig, master=master)
+        self.canvas.get_tk_widget().pack(fill='both', expand=True)
 
-    plt.tight_layout()
-    plt.show()
+    def update(self, signals):
+        # signals adalah list dua array sinyal: [respiration_signal, rppg_signal]
+        if len(signals) < 2:
+            return
+
+        resp_signal = signals[0]
+        rppg_signal = signals[1]
+
+        if resp_signal:
+            self.respiration_line.set_xdata(np.arange(len(resp_signal)))
+            self.respiration_line.set_ydata(resp_signal)
+
+        if rppg_signal:
+            self.rppg_line.set_xdata(np.arange(len(rppg_signal)))
+            self.rppg_line.set_ydata(rppg_signal)
+
+        max_len = max(len(resp_signal), len(rppg_signal), 300)
+        self.ax.set_xlim(0, max_len)
+        self.canvas.draw_idle()

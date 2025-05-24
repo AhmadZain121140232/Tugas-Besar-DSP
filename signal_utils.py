@@ -1,18 +1,18 @@
-# signal_utils.py
-# File ini berisi fungsi pendukung untuk pemrosesan sinyal, seperti filter dan normalisasi
-# sinyal, yang digunakan dalam proses ekstraksi sinyal respirasi dan rPPG.
-
+import numpy as np
 from scipy.signal import butter, filtfilt
 
-# Fungsi untuk membuat filter bandpass
-def bandpass_filter(data, lowcut, highcut, fs, order=4):
-    nyquist = 0.5 * fs
-    low = lowcut / nyquist
-    high = highcut / nyquist
+def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
+    nyq = 0.5 * fs
+    low = lowcut / nyq
+    high = highcut / nyq
     b, a = butter(order, [low, high], btype='band')
-    return filtfilt(b, a, data)
+    y = filtfilt(b, a, data)
+    return y
 
-# Fungsi untuk normalisasi sinyal
 def normalize_signal(signal):
-    # Normalisasi sinyal agar berada dalam rentang [0, 1]
+    signal = np.array(signal)
     return (signal - np.min(signal)) / (np.max(signal) - np.min(signal))
+
+def smooth_signal(signal, window_len=5):
+    window = np.ones(window_len)/window_len
+    return np.convolve(signal, window, mode='same')
