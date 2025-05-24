@@ -1,4 +1,3 @@
-#tetsing
 
 import cv2
 
