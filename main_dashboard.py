@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
@@ -21,7 +20,6 @@ class VitalDashboard:
         self.root.columnconfigure(1, weight=2)
         self.root.rowconfigure(2, weight=1)
 
-        # UI Elements...
         self.title_label = tk.Label(self.root, text="Welcome To Signal Respiration Real-time",
                                     font=("Helvetica", 16), fg="white", bg="black")
         self.title_label.grid(row=0, column=0, columnspan=2, pady=20)
@@ -35,25 +33,31 @@ class VitalDashboard:
         self.stop_button = ttk.Button(self.button_frame, text="Stop", command=self.stop_video)
         self.stop_button.grid(row=0, column=1, padx=20)
 
-        # Video frame (left)
+        # Video frame di kolom 0
         self.video_frame = ttk.LabelFrame(self.root, text="Video", padding=10)
         self.video_frame.grid(row=2, column=0, sticky="nsew", padx=10, pady=10)
         self.video_label = ttk.Label(self.video_frame)
         self.video_label.pack(fill=tk.BOTH, expand=True)
 
-        # Signal frame (right)
+        # Signal frame di kolom 1
         self.signal_frame = ttk.LabelFrame(self.root, text="Signal Visualizations", padding=10)
         self.signal_frame.grid(row=2, column=1, sticky="nsew", padx=10, pady=10)
 
-        # Visualization instance for plotting signals
         self.visualization = Visualization(self.signal_frame)
 
-        # Processors
         self.respiration_processor = RespirationProcessor()
         self.rppg_processor = RPPGProcessor()
 
         self.cap = None
         self.running = False
+
+        # Bind keyboard event untuk shortcut keluar program dengan 'q'
+        self.root.bind('<Key>', self.key_press)
+
+    def key_press(self, event):
+        if event.char.lower() == 'q':
+            self.stop_video()
+            self.root.quit()  # Keluar dari mainloop Tkinter
 
     def start_video(self):
         if not self.running:
@@ -80,7 +84,6 @@ class VitalDashboard:
             self.stop_video()
             return
 
-        # Proses sinyal respirasi dan rPPG
         processed_frame, respiration_signal = self.respiration_processor.process(frame)
         processed_frame, rppg_signal = self.rppg_processor.process(processed_frame)
 
@@ -91,7 +94,7 @@ class VitalDashboard:
         self.video_label.config(image=photo)
         self.video_label.image = photo
 
-        # Update grafik dengan kedua sinyal
+        # Update grafik sinyal
         self.visualization.update([respiration_signal, rppg_signal])
 
         self.root.after(30, self.capture_video)
