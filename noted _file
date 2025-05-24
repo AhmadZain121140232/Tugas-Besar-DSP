@@ -1,0 +1,30 @@
+# Tugas Besar DSP - Penjelasan File
+
+Berikut adalah penjelasan tentang setiap file dalam proyek ini:
+
+## 1. `main_dashboard.py`
+- **Fungsi**: File ini bertanggung jawab untuk membuat dan menampilkan **dashboard GUI** untuk aplikasi. Digunakan untuk menampilkan video dari webcam dan hasil sinyal vital yang telah dianalisis.
+
+## 2. `main.py`
+- **Fungsi**: File utama yang mengontrol alur aplikasi. Mengambil video, memproses sinyal **respirasi** dan **rPPG**, serta mengarahkan aplikasi untuk menampilkan hasil di **GUI**.
+
+## 3. `README.md`
+- **Fungsi**: File dokumentasi yang berisi deskripsi umum tentang proyek ini, tujuan, cara instalasi, dan langkah-langkah penggunaannya. Dapat digunakan untuk memberikan panduan kepada rekan atau pengguna proyek.
+
+## 4. `requirements.txt`
+- **Fungsi**: Daftar semua **dependencies** atau pustaka Python yang dibutuhkan untuk menjalankan proyek ini. File ini digunakan untuk menginstal semua dependensi dengan perintah `pip install -r requirements.txt`.
+
+## 5. `respirasi_processor.py`
+- **Fungsi**: File yang menangani pemrosesan **sinyal respirasi** yang diambil dari gerakan tubuh atau dada. Biasanya digunakan untuk mengekstraksi data pernapasan dari video.
+
+## 6. `rppg_processor.py`
+- **Fungsi**: File yang bertugas untuk memproses **sinyal rPPG** (remote photoplethysmography), yang digunakan untuk mendeteksi detak jantung dari perubahan warna kulit (biasanya di wajah).
+
+## 7. `signal_utils.py`
+- **Fungsi**: Berisi fungsi pendukung untuk pemrosesan sinyal, seperti **filtering**, **normalisasi sinyal**, dan teknik pemrosesan lainnya yang mendukung analisis sinyal respirasi dan rPPG.
+
+## 8. `visualization.py`
+- **Fungsi**: File ini bertanggung jawab untuk **menampilkan grafik** hasil sinyal respirasi dan rPPG yang telah diproses. Menggunakan pustaka seperti **matplotlib** untuk visualisasi data.
+
+## 9. `vital_cam_gui.py`
+- **Fungsi**: File ini mengelola **pengambilan video webcam** dan menampilkan antarmuka grafis untuk melihat hasil **vital signs** yang dianalisis (respirasi dan rPPG).
