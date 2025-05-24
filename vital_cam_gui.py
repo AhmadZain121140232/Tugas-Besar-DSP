@@ -1,13 +1,7 @@
-# vital_cam_gui.py
-# File ini bertanggung jawab untuk mengelola pengambilan video dari webcam
-# dan menampilkan video tersebut di antarmuka grafis.
-
 import cv2
 
-# Fungsi untuk memulai pengambilan video menggunakan webcam
-def start_video_capture():
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        print("Error: Cannot access the camera.")
-        exit()  # Menghentikan program jika tidak dapat mengakses webcam
+def start_video_capture(camera_index=0):
+    cap = cv2.VideoCapture(camera_index)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
     return cap
