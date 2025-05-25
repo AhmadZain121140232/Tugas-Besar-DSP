@@ -1,0 +1,4 @@
+# Folder yang diabaikan
+.git/
+.ipynb_checkpoints/
+env/
