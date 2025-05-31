@@ -25,9 +25,12 @@ Proyek ini bertujuan untuk mendemonstrasikan penerapan praktis teknik pemrosesan
 * Joshia Fernandes Sectio Purba (122140170) ID:Joshia05
 
 ## Logbook
-* 09/05/2025 Membuat repo, meng-invite collaborators.
-* 24/05/2025 Push file-file yang dibutuhkan ke repo.
-* 26/05/2025 Meng-update komentar, docstring, dan readme.md
+* 09/05/2025 – Membuat repository GitHub, mengundang kolaborator. (Oleh: Ahmad Zain Mahmud)
+* 24/05/2025 – Push file awal proyek ke repository, serta pengerjaan laporan bagian Pendahuluan dan Landasan Teori. (Oleh: Ahmad Zain Mahmud)
+* 25/05/2025 – Revisi dan penyempurnaan bagian Landasan Teori dalam laporan. (Oleh: Muhammad Rafif Vivaldi)
+* 26/05/2025 – Pembaruan komentar dalam kode, penambahan docstring, dan perbaikan README.md. (Oleh: Semua anggota)
+* 30/05/2025 – Pengerjaan bagian Metodologi dan Hasil Pengujian dalam laporan. (Oleh: Muhammad Rafif Vivaldi)
+* 31/05/2025 – Pengerjaan bagian Evaluasi Sistem dan Kesimpulan. (Oleh: Joshia Fernandes Sectio Purba)
 
 ## Instruksi Instalasi
 
